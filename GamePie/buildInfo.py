@@ -1,3 +1,3 @@
-{
-    "Will be made by consol": true
+buidInfo = {
+    "Will be made by consol": True
 } 
