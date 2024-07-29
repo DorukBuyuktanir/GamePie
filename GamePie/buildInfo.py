@@ -1,4 +1,3 @@
-buildInfo = {
-  "platform": "windows",
-  "path": "D:\Desktop\GamePie\\"
-}
+{
+    "Will be made by consol": true
+} 
