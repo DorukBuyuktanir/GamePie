@@ -1,21 +1,32 @@
 @echo off
 title GamePie
 color 0e
-echo Welcome to the Game Pie. Please be sure that you open the file on it's locatio!!!
+echo Welcome to the Game Pie. Please be sure that you open the file on its location!!!
+
+rem Imports
+set "imports=GamePie\ConsoleCommands\Imports.bat"
+
+rem Installing Packages
+CALL %imports% :PipInstall PyExecJS
+CALL %imports% :PipInstall cffi
+
+rem Settings Stuff
 set filePath=%~dp0
 CALL :BuildInfo
 echo You can write commands now. Write help if you need...
 pause
-:commandPromt
+
+rem Main Code
+:commandPrompt
 set /p command=
-if command == "" Goto :commandPromt
+if "%command%" equ "" goto commandPrompt
 
-echo {^"currentState^": ^"unproced^", ^"message^": ^"%command%^"} > "GamePie\commands.json"
-CALL :runPyScript "GamePie\commands.py"
-Goto :commandPromt
+echo {"currentState": "unprocessed", "message": "%command%"} > "GamePie\TerminalStuff\commands.json"
+CALL %imports% :runPyScript "GamePie\TerminalStuff\commands.py"
+goto commandPrompt
 
-rem  functions
- :BuildInfo
+rem Functions
+:BuildInfo
  setlocal
  set "infoFile=GamePie\buildInfo.py"
  (
@@ -25,16 +36,4 @@ rem  functions
    echo }
  ) > "%infoFile%"
  endlocal
- goto :eof
-
- :runPyScript
-
- where python >nul 2>nul
- if %errorlevel% neq 0 (
-     echo Python yüklü değil. Lütfen Python'u yükleyin ve tekrar deneyin.
-     exit /b 1
- )
-
- python %1
- pause
- goto :eof
+goto :eof
