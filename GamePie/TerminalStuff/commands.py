@@ -14,10 +14,8 @@ commandSwitch = Switch({
      
 })
 
-
-
 #Compress the Commands
-if(commands and commands["currentState"] == "unproced"):
+if(commands and commands["currentState"] == "unprocessed"):
         commandList = commands["message"].split(';');
         for command in commandList:
             compressedCommand = command.split(" ");

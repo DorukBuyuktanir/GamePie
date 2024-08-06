@@ -63,7 +63,6 @@ goto :eof
  set "packageName=%1"
  python -m pip --version
  if %errorlevel% neq 0 CALL :InstallPip
- echo asasa
  pip install %packageName%
 
  endlocal
