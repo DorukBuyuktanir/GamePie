@@ -1,7 +1,7 @@
 @echo off
 title GamePie
-color 0e
 echo Welcome to the Game Pie. Please be sure that you open the file on its location!!!
+color 3b
 
 rem Imports
 set "imports=GamePie\ConsoleCommands\Imports.bat"
@@ -14,6 +14,7 @@ CALL :PipInstall cffi
 rem Settings Stuff
 set filePath=%~dp0
 CALL :BuildInfo
+color 0b
 echo You can write commands now. Write help if you need...
 pause
 
