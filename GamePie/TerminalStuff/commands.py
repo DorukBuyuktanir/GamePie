@@ -15,10 +15,17 @@ commandSwitch = Switch({
 })
 
 #Compress the Commands
+modifedCommands = [];
 if(commands and commands["currentState"] == "unprocessed"):
-        commandList = commands["message"].split(';');
+        commandList = list(filter(None, commands["message"].split(';')));
+
         for command in commandList:
-            compressedCommand = command.split(" ");
-            if(command != ""):
-                print(compressedCommand);
-                commandSwitch.use(compressedCommand[0], compressedCommand);
+            compressedCommand = list(filter(None, command.split(" ")));
+
+            modifedCommands.append(compressedCommand);
+            print(compressedCommand);
+        print("////////////////////////////////////////")
+
+        print(modifedCommands);
+        #commandSwitch.use(compressedCommand[0], compressedCommand);
+        
